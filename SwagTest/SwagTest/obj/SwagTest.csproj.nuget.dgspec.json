@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Boy_o\\source\\repos\\SwagTest\\SwagTest\\SwagTest.csproj": {}
+    "C:\\Users\\Boy_o\\source\\repos\\sandbox\\SwagTest\\SwagTest\\SwagTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Boy_o\\source\\repos\\SwagTest\\SwagTest\\SwagTest.csproj": {
+    "C:\\Users\\Boy_o\\source\\repos\\sandbox\\SwagTest\\SwagTest\\SwagTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Boy_o\\source\\repos\\SwagTest\\SwagTest\\SwagTest.csproj",
+        "projectUniqueName": "C:\\Users\\Boy_o\\source\\repos\\sandbox\\SwagTest\\SwagTest\\SwagTest.csproj",
         "projectName": "SwagTest",
-        "projectPath": "C:\\Users\\Boy_o\\source\\repos\\SwagTest\\SwagTest\\SwagTest.csproj",
+        "projectPath": "C:\\Users\\Boy_o\\source\\repos\\sandbox\\SwagTest\\SwagTest\\SwagTest.csproj",
         "packagesPath": "C:\\Users\\Boy_o\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Boy_o\\source\\repos\\SwagTest\\SwagTest\\obj\\",
+        "outputPath": "C:\\Users\\Boy_o\\source\\repos\\sandbox\\SwagTest\\SwagTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Boy_o\\AppData\\Roaming\\NuGet\\NuGet.Config",
