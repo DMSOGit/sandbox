@@ -12,10 +12,12 @@ namespace SwagTest.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly WeatherClient _weatherClient;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, WeatherClient weatherClient)
         {
             _logger = logger;
+            _weatherClient = weatherClient;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -32,8 +34,7 @@ namespace SwagTest.Controllers
         [HttpGet("[action]")]
         public string GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
         {
-            WeatherClient client = WeatherClient.Instance;
-            return client.GetWeatherData(latitude, longitude);
+            return _weatherClient.GetWeatherData(latitude, longitude);
         }
     }
 }
