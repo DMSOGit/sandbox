@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SwagTest.Model;
 
 namespace SwagTest.Controllers
 {
@@ -32,7 +33,7 @@ namespace SwagTest.Controllers
             .ToArray();
         }
         [HttpGet("[action]")]
-        public string GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
+        public WeatherData GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
         {
             return _weatherClient.GetWeatherData(latitude, longitude);
         }
