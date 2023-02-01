@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using Newtonsoft.Json;
+using SwagTest.Model;
+using System.Net;
 
 namespace SwagTest
 {
@@ -8,11 +10,11 @@ namespace SwagTest
         private readonly HttpClient _client;
 
         //Singleton, dont instanciate
-        public WeatherClient(HttpClient client) 
+        public WeatherClient(HttpClient client)
         {
             _client = client;
         }
-        public string GetWeatherData(string latitude, string longitude)
+        public WeatherData GetWeatherData(string latitude, string longitude)
         {
             string data;
             string url = string.Format(API_URL, latitude, longitude);
@@ -25,7 +27,9 @@ namespace SwagTest
             {
                 data = "Error occured";
             }
-            return data;
+            WeatherData deserializedWeatherData = JsonConvert.DeserializeObject<WeatherData>(data);
+
+            return deserializedWeatherData;
         }
     }
 }
