@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using SwagTest.Model;
 
 namespace SwagTest.Controllers
@@ -24,6 +25,7 @@ namespace SwagTest.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            Log.Information("Calling Get");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -35,6 +37,7 @@ namespace SwagTest.Controllers
         [HttpGet("[action]")]
         public WeatherData GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
         {
+            Log.Information("Calling GetWeatherData");
             return _weatherClient.GetWeatherData(latitude, longitude);
         }
     }
