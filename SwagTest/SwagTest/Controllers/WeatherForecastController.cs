@@ -37,7 +37,6 @@ namespace SwagTest.Controllers
         [HttpGet("[action]")]
         public WeatherData GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
         {
-            Log.Information("Calling GetWeatherData");
             return _weatherClient.GetWeatherData(latitude, longitude);
         }
     }

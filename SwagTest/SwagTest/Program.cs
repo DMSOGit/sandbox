@@ -1,7 +1,6 @@
 using SwagTest;
 using Serilog;
-using System.Text;
-using Serilog.Formatting.Json;
+using SwagTest.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,20 +12,34 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<WeatherClient>();
 builder.Services.AddSingleton<HttpClient>();
+
+//add logger to framework
 builder.Services.AddLogging(builder => builder.AddSerilog(dispose: true));
 
+//setup of logger
+//This setup will log everything daily in a file named after the current date in the Log directory of the project
+//It will keep the latest 10 files in the directory
+var configuration = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json")
+        .Build();
+
 Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.File($"{Environment.CurrentDirectory}\\..\\Log\\.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 10)
-                .CreateLogger();
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
 
 //serilog
-//trouver comment le faire utiliser par le framework
-//logger dans un .txt a chaque fois que quelqu'un fait un call
-//le rendre "rolling" pour just avoir 10 fichiers de log en rotation
-//1 file par journée, donc le nom de la file sera la date
-//call de base "api a ete appeller"
-//logger aussi ce que le framework ecrit (something about startup file)
+//logger dans le projet sans utiliser Environement (supposé être automatique)
+//configure logger with logsettings.json file
+//minimumlevel warning, checker les different lvl
+
+//ne pas faire Log.Information("Calling Get");, trouver comment insérer ça dans le framework
+//pour caller les controlleurs sont appelé (ce qui veut apparement dire les calls http)
+//autrement dit: quand un call a mon api est fait, on doit le logger
+//avec une classe IMiddleware
+
+
+//ExceptionFilter : OnException
+//a checker pour voir
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -35,7 +48,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<SerilogMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
