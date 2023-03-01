@@ -25,7 +25,6 @@ namespace SwagTest.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            Log.Information("Calling Get");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -34,6 +33,7 @@ namespace SwagTest.Controllers
             })
             .ToArray();
         }
+
         [HttpGet("[action]")]
         public WeatherData GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
         {
