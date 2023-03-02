@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 using SwagTest.Model;
 
 namespace SwagTest.Controllers
@@ -33,7 +32,6 @@ namespace SwagTest.Controllers
             })
             .ToArray();
         }
-
         [HttpGet("[action]")]
         public WeatherData GetWeatherData(string latitude = "45.51", string longitude = "-73.59")
         {
